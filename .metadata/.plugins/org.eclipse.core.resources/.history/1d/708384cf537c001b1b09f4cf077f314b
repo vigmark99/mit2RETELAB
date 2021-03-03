@@ -105,14 +105,14 @@ public class Main {
 		{
 			Event event=al.get(i);
 			if(event.getDirection()==Direction.IN) {
-				System.out.println("W = "+event.getName());
+				System.out.println(event.getName());
 			}
 		}
 		EList<Property> al2=scope.getVariables();
 		for(int i=0; i<al2.size(); i++)
 		{
 			Property p=al2.get(i);
-			System.out.println("B = "+p.getName());
+			System.out.println(p.getName());
 		}
 	}
 }

@@ -40,7 +40,23 @@ public class Main {
 		};
 		// Reading model
 		Statechart s = (Statechart) root;
-		print(s);
+		Scope scope=s.getScopes().get(0);
+		System.out.println("bemenő események: ");
+		EList<Event> al=scope.getEvents();
+		for(int i=0; i<al.size(); i++)
+		{
+			Event event=al.get(i);
+			if(event.getDirection()==Direction.IN) {
+				System.out.println(event.getName());
+			}
+		}
+		System.out.println("belső változók: ");
+		EList<Property> al2=scope.getVariables();
+		for(int i=0; i<al2.size(); i++)
+		{
+			Property p=al2.get(i);
+			System.out.println(p.getName());
+		}
 		TreeIterator<EObject> iterator = s.eAllContents();
 		ArrayList<structure> a= new ArrayList<structure>(); //itt tárolom a stateket és a hozzájuk tartozozó boolean értékeket
 		ArrayList<String> str= new ArrayList<String>();
@@ -98,21 +114,7 @@ public class Main {
 		// and saving it
 		manager.saveFile("model_output/graph.gml", content);
 	}
-	public static void print(Statechart s) {
-		Scope scope=s.getScopes().get(0);
-		EList<Event> al=scope.getEvents();
-		for(int i=0; i<al.size(); i++)
-		{
-			Event event=al.get(i);
-			if(event.getDirection()==Direction.IN) {
-				System.out.println("W = "+event.getName());
-			}
-		}
-		EList<Property> al2=scope.getVariables();
-		for(int i=0; i<al2.size(); i++)
-		{
-			Property p=al2.get(i);
-			System.out.println("B = "+p.getName());
-		}
+	public static void print(stateMachine s) {
+		
 	}
 }
