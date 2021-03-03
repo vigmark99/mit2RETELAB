@@ -16,7 +16,6 @@ import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Transition;
 
 import hu.bme.mit.model2gml.Model2GML;
-import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;
 import hu.bme.mit.yakindu.analysis.modelmanager.ModelManager;
 
 public class Main {
@@ -41,22 +40,6 @@ public class Main {
 		};
 		// Reading model
 		Statechart s = (Statechart) root;
-		Scope scope=s.getScopes().get(0);
-		System.out.println("bemenő események: ");
-		EList<Event> al=scope.getEvents();
-		for(int i=0; i<al.size(); i++)
-		{
-			Event event=al.get(i);
-			if(event.getDirection()==Direction.IN) {
-				System.out.println(event.getName());
-			}
-		}
-		System.out.println("belső változók: ");
-		EList<Property> al2=scope.getVariables();
-		for(int i=0; i<al2.size();i++) {
-			Property p=al2.get(i);
-			System.out.println(p.getName());
-		}
 		print(s);
 		TreeIterator<EObject> iterator = s.eAllContents();
 		ArrayList<structure> a= new ArrayList<structure>(); //itt tárolom a stateket és a hozzájuk tartozozó boolean értékeket
@@ -131,50 +114,5 @@ public class Main {
 			Property p=al2.get(i);
 			System.out.println("B = "+p.getName());
 		}
-	}
-	
-	public static void gen(IExampleStatemachine s, EList<Event> e, EList<Property> p)
-	{
-		System.out.println("package hu.bme.mit.yakindu.analysis.workhere;");
-		System.out.println("import java.io.BufferedReader;");
-		System.out.println("import java.io.DataInputStream;");
-		System.out.println("import java.io.IOException;");
-		System.out.println("import java.io.InputStreamReader;");
-		System.out.println("import java.util.Scanner;");
-		System.out.println("import hu.bme.mit.yakindu.analysis.RuntimeService;");
-		System.out.println("import hu.bme.mit.yakindu.analysis.TimerService;");
-		System.out.println("import hu.bme.mit.yakindu.analysis.example.ExampleStatemachine;");
-		System.out.println("import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;");
-		System.out.println("public class RunStatechart {\n" + 
-				"	\n" + 
-				"	public static void main(String[] args) throws IOException {\n" + 
-				"		ExampleStatemachine s = new ExampleStatemachine();\n" + 
-				"		s.setTimer(new TimerService());\n" + 
-				"		RuntimeService.getInstance().registerStatemachine(s, 200);\n" + 
-				"		s.init();\n" + 
-				"		s.enter();\n" + 
-				"		s.runCycle();\n" + 
-				"		print(s);\n" + 
-				"		BufferedReader buffer=new BufferedReader(new InputStreamReader(System.in));\n"+
-				"		String str=\"\";\n"+
-				"while(str!=\"exit\")\n" + 
-				"		{\n" + 
-				"			str=buffer.readLine();\n"+
-				"		System.out.println(str);");
-		for(int i=0; i<e.size();i++)
-		{
-			String name=e.get(i).getName();
-			System.out.println("if(str.compareTo("+name+")==0)\n" + 
-					"			{\n" + 
-					"				s.raise"+name+"();\n" + 
-					"				System.out.println("+name+"\"raised\");\n" + 
-					"			}");
-		}
-		System.out.println("print(s); \n } \n System.exit(0); \n } \n");
-		System.out.println("public static void print(IExampleStatemachine s) {\n" + 
-				"		System.out.println(\"W = \" + s.getSCInterface().getWhiteTime());\n" + 
-				"		System.out.println(\"B = \" + s.getSCInterface().getBlackTime());\n" + 
-				"	}");
-		
 	}
 }
