@@ -16,12 +16,11 @@ import hu.bme.mit.yakindu.analysis.example.ExampleStatemachine;
 import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;
 
 public class CodeGenerator {
-	public static void main(String[] args) throws IOException{
-		
-		
+	public static void main(String[] args) throws IOException {
+
 	}
-	public static void gen(IExampleStatemachine s, EList<Event> e, EList<Property> p)
-	{
+
+	public static void gen(IExampleStatemachine s, EList<Event> e, EList<Property> p) {
 		System.out.println("package hu.bme.mit.yakindu.analysis.workhere;");
 		System.out.println("import java.io.BufferedReader;");
 		System.out.println("import java.io.DataInputStream;");
@@ -32,37 +31,31 @@ public class CodeGenerator {
 		System.out.println("import hu.bme.mit.yakindu.analysis.TimerService;");
 		System.out.println("import hu.bme.mit.yakindu.analysis.example.ExampleStatemachine;");
 		System.out.println("import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;");
-		System.out.println("public class RunStatechart {\n" + 
-				"	\n" + 
-				"	public static void main(String[] args) throws IOException {\n" + 
-				"		ExampleStatemachine s = new ExampleStatemachine();\n" + 
-				"		s.setTimer(new TimerService());\n" + 
-				"		RuntimeService.getInstance().registerStatemachine(s, 200);\n" + 
-				"		s.init();\n" + 
-				"		s.enter();\n" + 
-				"		s.runCycle();\n" + 
-				"		print(s);\n" + 
-				"		BufferedReader buffer=new BufferedReader(new InputStreamReader(System.in));\n"+
-				"		String str=\"\";\n"+
-				"while(str!=\"exit\")\n" + 
-				"		{\n" + 
-				"			str=buffer.readLine();\n"+
-				"		System.out.println(str);");
-		for(int i=0; i<e.size();i++)
-		{
-			String name=e.get(i).getName();
-			System.out.println("if(str.compareTo("+name+")==0)\n" + 
-					"			{\n" + 
-					"				s.raise"+name+"();\n" + 
-					"				System.out.println("+name+"\"raised\");\n" + 
-					"			}");
+		System.out.println("public class RunStatechart {\n" + "	\n"
+				+ "	public static void main(String[] args) throws IOException {\n"
+				+ "		ExampleStatemachine s = new ExampleStatemachine();\n"
+				+ "		s.setTimer(new TimerService());\n"
+				+ "		RuntimeService.getInstance().registerStatemachine(s, 200);\n" + "		s.init();\n"
+				+ "		s.enter();\n" + "		s.runCycle();\n" + "		print(s);\n"
+				+ "		BufferedReader buffer=new BufferedReader(new InputStreamReader(System.in));\n"
+				+ "		String str=\"\";\n" + "while(str!=\"exit\")\n" + "		{\n"
+				+ "			str=buffer.readLine();\n" + "		System.out.println(str);");
+		for (int i = 0; i < e.size(); i++) {
+			String name = e.get(i).getName();
+			System.out.println("if(str.compareTo(\"" + name + "\")==0)\n" + "			{\n" + "				s.raise"
+					+ name.substring(0, 1).toUpperCase() + name.substring(1) + "();\n"
+					+ "				System.out.println(\"" + name + " raised\");\n" + "			}");
 		}
 		System.out.println("print(s); \n } \n System.exit(0); \n } \n");
-		System.out.println("public static void print(IExampleStatemachine s) {\n" + 
-				"		System.out.println(\"W = \" + s.getSCInterface().getWhiteTime());\n" + 
-				"		System.out.println(\"B = \" + s.getSCInterface().getBlackTime());\n" + 
-				"	}");
-		
+		System.out.println("public static void print(IExampleStatemachine s) {\n");
+		for (int i = 0; i < p.size(); i++) {
+			String name = p.get(i).getName();
+			System.out.println("		System.out.println(\"" + name.substring(0, 1).toUpperCase()
+					+ " = \" + s.getSCInterface().get" + name.substring(0, 1).toUpperCase() + name.substring(1)
+					+ "());\n");
+		}
+		System.out.println("}");
+
 	}
-	
+
 }
