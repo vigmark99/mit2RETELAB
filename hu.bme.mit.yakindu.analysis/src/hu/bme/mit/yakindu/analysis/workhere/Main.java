@@ -7,6 +7,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
+import org.yakindu.base.types.Direction;
+import org.yakindu.base.types.Event;
+import org.yakindu.base.types.Property;
+import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.State;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Transition;
@@ -36,6 +40,23 @@ public class Main {
 		};
 		// Reading model
 		Statechart s = (Statechart) root;
+		Scope scope=s.getScopes().get(0);
+		System.out.println("bemenő események: ");
+		EList<Event> al=scope.getEvents();
+		for(int i=0; i<al.size(); i++)
+		{
+			Event event=al.get(i);
+			if(event.getDirection()==Direction.IN) {
+				System.out.println(event.getName());
+			}
+		}
+		System.out.println("belső változók: ");
+		EList<Property> al2=scope.getVariables();
+		for(int i=0; i<al2.size(); i++)
+		{
+			Property p=al2.get(i);
+			System.out.println(p.getName());
+		}
 		TreeIterator<EObject> iterator = s.eAllContents();
 		ArrayList<structure> a= new ArrayList<structure>(); //itt tárolom a stateket és a hozzájuk tartozozó boolean értékeket
 		ArrayList<String> str= new ArrayList<String>();
