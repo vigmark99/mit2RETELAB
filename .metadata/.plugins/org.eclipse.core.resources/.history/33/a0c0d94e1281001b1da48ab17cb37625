@@ -170,7 +170,7 @@ public class Main {
 					+ " = \" + s.getSCInterface().get" + name.substring(0, 1).toUpperCase() + name.substring(1)
 					+ "());\n");
 		}
-		System.out.println("}}");
+		System.out.println("}");
 
 	}
 }

@@ -18,10 +18,10 @@ public class ExampleStatemachine implements IExampleStatemachine {
 			white = true;
 		}
 		
-		private boolean black;
+		private boolean notblack;
 		
-		public void raiseBlack() {
-			black = true;
+		public void raiseNotblack() {
+			notblack = true;
 		}
 		
 		private long whiteTime;
@@ -47,7 +47,7 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		protected void clearEvents() {
 			start = false;
 			white = false;
-			black = false;
+			notblack = false;
 		}
 	}
 	
@@ -211,8 +211,8 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		sCInterface.raiseWhite();
 	}
 	
-	public void raiseBlack() {
-		sCInterface.raiseBlack();
+	public void raiseNotblack() {
+		sCInterface.raiseNotblack();
 	}
 	
 	public long getWhiteTime() {
@@ -345,7 +345,7 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		
 		if (try_transition) {
 			if (react()==false) {
-				if (sCInterface.black) {
+				if (sCInterface.notblack) {
 					exitSequence_main_region_Black();
 					enterSequence_main_region_White_default();
 				} else {

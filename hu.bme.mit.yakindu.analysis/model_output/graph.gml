@@ -250,9 +250,9 @@ graph
 			LabelGraphics
 			[
 				text	"
-	name = black
+	name = notblack
 	static = false
-	id = example bl...
+	id = example no...
 	direction = ::in
 	"
 				fontSize	14
@@ -1075,7 +1075,7 @@ graph
 			id	30
 			graphics
 			[
-				w	177.10000000000002
+				w	200.20000000000002
 				h	54
 				type	"rectangle"
 				fill	"#FFFFFF"
@@ -1096,7 +1096,7 @@ graph
 			LabelGraphics
 			[
 				text	"
-	specification = black
+	specification = notblack
 	documentation = 
 	"
 				fontSize	14

@@ -1,4 +1,4 @@
-package hu.bme.mit.yakindu.analysis.workhere;
+ackage hu.bme.mit.yakindu.analysis.workhere;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -50,4 +50,4 @@ public static void print(IExampleStatemachine s) {
 
 		System.out.println("B = " + s.getSCInterface().getBlackTime());
 
-}}
+}

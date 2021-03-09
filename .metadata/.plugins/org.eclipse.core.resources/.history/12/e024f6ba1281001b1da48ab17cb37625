@@ -50,4 +50,5 @@ public static void print(IExampleStatemachine s) {
 
 		System.out.println("B = " + s.getSCInterface().getBlackTime());
 
-}}
+}
+}
