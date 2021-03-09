@@ -7,17 +7,38 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.junit.Test;
 import org.yakindu.base.types.Event;
 import org.yakindu.base.types.Property;
+import org.yakindu.sct.model.sgraph.Scope;
+import org.yakindu.sct.model.sgraph.State;
+import org.yakindu.sct.model.sgraph.Statechart;
 
+import hu.bme.mit.model2gml.Model2GML;
 import hu.bme.mit.yakindu.analysis.RuntimeService;
 import hu.bme.mit.yakindu.analysis.TimerService;
 import hu.bme.mit.yakindu.analysis.example.ExampleStatemachine;
 import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;
+import hu.bme.mit.yakindu.analysis.modelmanager.ModelManager;
 
 public class CodeGenerator {
+	
+	@Test
+	public void test() throws IOException {
+		main(new String[0]);
+	}
 	public static void main(String[] args) throws IOException {
-
+		ModelManager manager = new ModelManager();
+		System.out.println("code:");
+		// Loading model
+		EObject root = manager.loadModel("model_input/example.sct");
+		// Reading model
+		Statechart s = (Statechart) root;
+		Scope scope = s.getScopes().get(0);
+		EList<Event> al = scope.getEvents();
+		EList<Property> al2 = scope.getVariables();
+		gen(null, al, al2);
 	}
 
 	public static void gen(IExampleStatemachine s, EList<Event> e, EList<Property> p) {

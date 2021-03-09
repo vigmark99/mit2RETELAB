@@ -47,23 +47,23 @@ public class Main {
 		Scope scope = s.getScopes().get(0);
 		System.out.println("bemenő események: ");
 		EList<Event> al = scope.getEvents();
-		/*
-		 * for(int i=0; i<al.size(); i++) { Event event=al.get(i);
-		 * if(event.getDirection()==Direction.IN) { System.out.println(event.getName());
-		 * } }
-		 */
-		// System.out.println("belső változók: ");
+		
+		  for(int i=0; i<al.size(); i++) { Event event=al.get(i);
+		  if(event.getDirection()==Direction.IN) { System.out.println(event.getName());
+		  } }
+		 
+		System.out.println("belső változók: ");
 		EList<Property> al2 = scope.getVariables();
-		/*
-		 * for(int i=0; i<al2.size();i++) { Property p=al2.get(i);
-		 * System.out.println(p.getName()); }
-		 */
-		// print(s);
+		
+		  for(int i=0; i<al2.size();i++) { Property p=al2.get(i);
+		  System.out.println(p.getName()); }
+		 
+		print(s);
+		gen(null, al, al2);
 		TreeIterator<EObject> iterator = s.eAllContents();
 		ArrayList<structure> a = new ArrayList<structure>(); // itt tárolom a stateket és a hozzájuk tartozozó boolean
 																// értékeket
 		ArrayList<String> str = new ArrayList<String>();
-		gen(null, al, al2);
 		str.add("Blue");
 		str.add("Blue");
 		str.add("Red");
@@ -77,24 +77,24 @@ public class Main {
 
 				a.add(new structure(state));// ha találunk egy állapotot akkor betesszük
 				if (state.getName().isEmpty()) {
-					// System.out.print("Egy állapotnak nincs neve. Javasolt név:");
+					System.out.print("Egy állapotnak nincs neve. Javasolt név:");
 
 					int rnd = new Random().nextInt(str.size());
 					String selected = str.get(rnd);
 					state.setName(selected);
-					// System.out.println(selected);
+					System.out.println(selected);
 					str.remove(rnd);
 
 				} else {
-					// System.out.println(state.getName());
+					System.out.println(state.getName());
 				}
 			}
 			if (content instanceof Transition) {
 				Transition transiton = (Transition) content;
-				/*
-				 * System.out.print(transiton.getSource().getName()); System.out.print(" -> ");
-				 * System.out.println(transiton.getTarget().getName());
-				 */
+				
+				  System.out.print(transiton.getSource().getName()); System.out.print(" -> ");
+				  System.out.println(transiton.getTarget().getName());
+				 
 				if (transiton.getSource().getName() != transiton.getTarget().getName())// itt megnézem, hogy a
 																						// tranzakció forrása, különb-e
 																						// a célnál
@@ -109,10 +109,10 @@ public class Main {
 				}
 			}
 		}
-		/*
-		 * System.out.println("Nyelők:"); for(int i=0; i<a.size(); i++) {
-		 * if(!a.get(i).b) { System.out.println(a.get(i).state.getName()); } }
-		 */
+		
+		  System.out.println("Nyelők:"); for(int i=0; i<a.size(); i++) {
+		  if(!a.get(i).b) { System.out.println(a.get(i).state.getName()); } }
+		 
 
 		// Transforming the model into a graph representation
 		String content = model2gml.transform(root);
@@ -135,7 +135,7 @@ public class Main {
 			System.out.println("B = " + p.getName());
 		}
 	}
-
+	
 	public static void gen(IExampleStatemachine s, EList<Event> e, EList<Property> p) {
 		System.out.println("package hu.bme.mit.yakindu.analysis.workhere;");
 		System.out.println("import java.io.BufferedReader;");

@@ -7,9 +7,11 @@
     <fullyQualifiedTypeName name="java.io.DataInputStream"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-    <fullyQualifiedTypeName name="org.yakindu.sct.model.sgraph.Scope"/>
-    <fullyQualifiedTypeName name="org.yakindu.base.types.Event"/>
-    <fullyQualifiedTypeName name="org.yakindu.base.types.Direction"/>
-    <fullyQualifiedTypeName name="org.yakindu.base.types.Property"/>
     <fullyQualifiedTypeName name="hu.bme.mit.yakindu.analysis.example.IExampleStatemachine"/>
+    <fullyQualifiedTypeName name="org.yakindu.sct.model.sgraph.Scope"/>
+    <fullyQualifiedTypeName name="org.yakindu.base.types.Direction"/>
+    <fullyQualifiedTypeName name="org.eclipse.emf.common.util.EList"/>
+    <fullyQualifiedTypeName name="org.yakindu.base.types.Property"/>
+    <fullyQualifiedTypeName name="org.yakindu.base.types.Event"/>
+    <fullyQualifiedTypeName name="org.yakindu.scr.example.ExampleStatemachine"/>
 </qualifiedTypeNameHistroy>
